@@ -20,12 +20,15 @@
   "pluginType": "elizaos:plugin:1.0.0",
   "pluginParameters": {
     "type": "object",
-    "required": ["FAL_API_KEY"],
+    "required": ["falApiKey"],
     "properties": {
-      "FAL_API_KEY": {
+      "falApiKey": {
         "type": "string",
         "description": "fal.ai API key"
       }
     }
+  },
+  "pluginEnv": {
+    "FAL_API_KEY": "falApiKey"
   }
 }
