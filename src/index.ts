@@ -14,9 +14,9 @@ import * as fs from 'fs';
 import { Buffer } from 'buffer';
 import * as path from 'path';
 
-const generate3D = async (prompt: string, runtime: IAgentRuntime) => {
+const generate3D = async (prompt: string, credentials: string) => {
     fal.config({
-        credentials: runtime.getSetting("FAL_API_KEY"),
+        credentials,
     });
 
     try {
@@ -79,14 +79,23 @@ const ThreeDGeneration: Action = {
         elizaLogger.log("FAL_API_KEY present:", !!FalApiKey);
         return !!FalApiKey;
     },
-    handler: async (
+    handler: async ({
+        runtime,
+        parameters,
+        message,
+        _state,
+        _options,
+        callback,
+    }: {
         runtime: IAgentRuntime,
+        parameters: any,
         message: Memory,
         _state: State,
         _options: any,
         callback: HandlerCallback
-    ) => {
-        elizaLogger.log("3D generation request:", message);
+    }) => {
+        elizaLogger.log("3D generation request:", message, parameters);
+        return;
 
         // Clean up the prompt by removing mentions and commands
         const ThreeDPrompt = message.content.text
@@ -111,7 +120,7 @@ const ThreeDGeneration: Action = {
         });
 
         try {
-            const result = await generate3D(ThreeDPrompt, runtime);
+            const result = await generate3D(ThreeDPrompt, parameters.falApiKey);
 
             if (result.success && result.url && result.file_name) {
                 // Download the 3D file
