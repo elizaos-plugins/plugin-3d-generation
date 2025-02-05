@@ -1,19 +1,19 @@
-// src/actions/3d-generation.ts
+// src/index.ts
 import { elizaLogger } from "@elizaos/core";
 import { fal } from "@fal-ai/client";
 
-// src/actions/constants.ts
+// src/constants.ts
 var FAL_CONSTANTS = {
   API_3D_ENDPOINT: "fal-ai/hyper3d/rodin",
   API_KEY_SETTING: "FAL_API_KEY"
   // The setting name to fetch from runtime
 };
 
-// src/actions/3d-generation.ts
-import * as fs from "fs";
-import { Buffer } from "buffer";
-import * as path from "path";
-import * as process from "process";
+// src/index.ts
+import * as fs from "node:fs";
+import { Buffer } from "node:buffer";
+import * as path from "node:path";
+import * as process from "node:process";
 var generate3D = async (prompt, runtime) => {
   process.env["FAL_KEY"] = FAL_CONSTANTS.API_KEY_SETTING || runtime.getSetting("FAL_API_KEY");
   try {
@@ -40,7 +40,10 @@ var generate3D = async (prompt, runtime) => {
         }
       }
     });
-    elizaLogger.log("Generation request successful, received response:", response);
+    elizaLogger.log(
+      "Generation request successful, received response:",
+      response
+    );
     return {
       success: true,
       url: response.data.model_mesh.url,
@@ -56,7 +59,16 @@ var generate3D = async (prompt, runtime) => {
 };
 var ThreeDGeneration = {
   name: "GENERATE_3D",
-  similes: ["3D_GENERATION", "3D_GEN", "CREATE_3D", "MAKE_3D", "TEXT23D", "TEXT_TO_3D", "3D_CREATE", "3D_MAKE"],
+  similes: [
+    "3D_GENERATION",
+    "3D_GEN",
+    "CREATE_3D",
+    "MAKE_3D",
+    "TEXT23D",
+    "TEXT_TO_3D",
+    "3D_CREATE",
+    "3D_MAKE"
+  ],
   description: "Generate a 3D object based on a text prompt",
   validate: async (runtime, _message) => {
     elizaLogger.log("Validating 3D generation action");
@@ -151,8 +163,6 @@ var ThreeDGeneration = {
     ]
   ]
 };
-
-// src/index.ts
 var ThreeDGenerationPlugin = {
   name: "3DGeneration",
   description: "Generate 3D using Hyper 3D",
