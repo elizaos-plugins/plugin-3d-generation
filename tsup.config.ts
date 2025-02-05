@@ -5,9 +5,6 @@ export default defineConfig({
     outDir: "dist",
     sourcemap: true,
     clean: true,
-    dts: {
-        resolve: false, // Don't try to resolve external types
-    },
     format: ["esm"],
     external: [
         "dotenv",
@@ -20,6 +17,5 @@ export default defineConfig({
         "https",
         "http",
         "agentkeepalive",
-        "@elizaos/core"
     ],
 });
