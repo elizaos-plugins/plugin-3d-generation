@@ -1,5 +1,9 @@
-import { Plugin } from '@elizaos/core';
-
-declare const ThreeDGenerationPlugin: Plugin;
+declare const ThreeDGenerationPlugin: {
+    name: string;
+    description: string;
+    actions: any[];
+    evaluators: any[];
+    providers: any[];
+};
 
 export { ThreeDGenerationPlugin };
