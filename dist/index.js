@@ -170,7 +170,9 @@ var ThreeDGenerationPlugin = {
   evaluators: [],
   providers: []
 };
+var index_default = ThreeDGenerationPlugin;
 export {
-  ThreeDGenerationPlugin
+  ThreeDGenerationPlugin,
+  index_default as default
 };
 //# sourceMappingURL=index.js.map
