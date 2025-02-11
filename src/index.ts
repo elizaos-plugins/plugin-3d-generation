@@ -197,3 +197,5 @@ export const ThreeDGenerationPlugin: Plugin = {
     evaluators: [],
     providers: [],
 };
+
+export default ThreeDGenerationPlugin;
