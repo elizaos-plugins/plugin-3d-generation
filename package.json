@@ -1,5 +1,5 @@
 {
-    "name": "@elizaos/plugin-3d-generation",
+    "name": "@elizaos-plugins/plugin-3d-generation",
     "version": "0.25.6-alpha.1",
     "type": "module",
     "main": "dist/index.js",
